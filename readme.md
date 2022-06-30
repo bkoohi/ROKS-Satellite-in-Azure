@@ -38,9 +38,11 @@ https://cloud.ibm.com/satellite/locations/create/azure
 Enter AppID, Tenant ID and passwd generated in previous step and select Verify
 
 Once verification has been comepleted, you should be able to get a summary of account such as this:
-<img width="1066" alt="image" src="https://user-images.githubusercontent.com/6279125/176707444-b7aae066-93f7-40dc-8629-fbb6fed13adf.png">
+
+<img width="1554" alt="image" src="https://user-images.githubusercontent.com/6279125/176719384-4d14034d-4eb3-4468-9133-75d40a13d4ab.png">
 
 
-8- next
+8- Once account has been validated and such cost estimate generated as shown in above then click on Create Location
+
 
 
