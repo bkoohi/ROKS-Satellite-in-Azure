@@ -1,4 +1,4 @@
-### Validation
+### 1- Validation
 
 1- Prior to creating a statellite location in Azure, check Usage-Quotas in Azure portal or cli to make sure there are at least 12 vCPU allowed:
 
@@ -16,7 +16,7 @@ Total Regional vCPUs                      8               10
 By default the limit is 10 vCPU per region and it needs to be modified from portal to at least 12 or higher.
 
 
-### Deployement 
+### 2- Deployement 
 1- Install Azure AZ Command line in your local host or laptop following in Mac OS:
 ```
 brew update && brew install azure-cli
