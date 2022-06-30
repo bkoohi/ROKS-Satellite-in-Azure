@@ -48,4 +48,8 @@ Once verification has been comepleted, you should be able to get a summary of ac
 <img width="1566" alt="image" src="https://user-images.githubusercontent.com/6279125/176720140-8f1b3711-09d1-42a3-8cff-9aed4bc45ad5.png">
 
 
+10 - Review in Schematics console, your Satellite location creation in Azure:
+https://cloud.ibm.com/schematics/workspaces
+
+
 
