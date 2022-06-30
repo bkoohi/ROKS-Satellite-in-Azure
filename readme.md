@@ -44,5 +44,8 @@ Once verification has been comepleted, you should be able to get a summary of ac
 
 8- Once account has been validated and such cost estimate generated as shown in above then click on Create Location
 
+9- Check the cluster creation status and progress:
+<img width="1566" alt="image" src="https://user-images.githubusercontent.com/6279125/176720140-8f1b3711-09d1-42a3-8cff-9aed4bc45ad5.png">
+
 
 
