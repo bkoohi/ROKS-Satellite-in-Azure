@@ -32,3 +32,15 @@ az account set --subscription=xxxxx
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/xxxxx" -n"satelline-service-principal"
 ```
 
+7- Go to IBM Cloud Satellite offering using Azure Quick Start
+https://cloud.ibm.com/satellite/locations/create/azure
+
+Enter AppID, Tenant ID and passwd generated in previous step and select Verify
+
+Once verification has been comepleted, you should be able to get a summary of account such as this:
+<img width="1066" alt="image" src="https://user-images.githubusercontent.com/6279125/176707444-b7aae066-93f7-40dc-8629-fbb6fed13adf.png">
+
+
+8- next
+
+
