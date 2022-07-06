@@ -295,6 +295,32 @@ Adding IP(s) 20.231.234.247 to NLB host name mycluster-satellite-0db9129938ea8a3
 Note: It might take a few minutes for your changes to be applied.
 OK
 %
+
+Validate ROKS cluster NLB IPs:
+```
+ibmcloud oc nlb-dns ls --cluster mycluster-satellite
+OK
+Hostname                                                                                       IP(s)                                                                    Health Monitor   SSL Cert Status   SSL Cert Secret Name                                        Secret Namespace    Status   
+mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud   10.0.1.5,10.0.2.5,10.0.3.4,20.231.234.241,20.231.234.247,20.231.235.85   disabled         created           mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000   openshift-ingress   OK   
+```
+
+Remove Private IPs from NLB:
+```
+ ibmcloud oc nlb-dns rm classic --ip  10.0.1.5 --cluster mycluster-satellite --nlb-host mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud
+Deleting IP 10.0.1.5 from NLB host name mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud in cluster mycluster-satellite...
+Note: It might take a few minutes for your changes to be applied.
+OK
+ % ibmcloud oc nlb-dns rm classic --ip  10.0.2.5 --cluster mycluster-satellite --nlb-host mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud
+Deleting IP 10.0.2.5 from NLB host name mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud in cluster mycluster-satellite...
+Note: It might take a few minutes for your changes to be applied.
+OK
+% ibmcloud oc nlb-dns rm classic --ip  10.0.3.4 --cluster mycluster-satellite --nlb-host mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud
+Deleting IP 10.0.3.4 from NLB host name mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud in cluster mycluster-satellite...
+Note: It might take a few minutes for your changes to be applied.
+OK
+ % 
+```
+
 ```
 ibmcloud oc nlb-dns ls --cluster mycluster-satellite
 ```
