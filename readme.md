@@ -207,6 +207,16 @@ Update VM IPs
 for i in {0..5}; do az network nic ip-config update --name $VM_PREFIX-nic-internal --nic-name $VM_PREFIX-nic-$i --resource-group $SAT_RG --public-ip-address $VM_PREFIX-vm-$i-public | grep ipAddress; done
 ```
 ```
+Output:
+    "ipAddress": null,
+    "ipAddress": null,
+    "ipAddress": null,
+    "ipAddress": null,
+    "ipAddress": null,
+    "ipAddress": null,
+```
+
+```
 ibmcloud target -g Default
 ```
 
