@@ -115,7 +115,39 @@ It may take up to 30 min to deploy 3 VMs for Satellite control plane and 3 VMs f
  2022/07/06 17:18:27 [1m[32mDone with the workspace action[39m[0m
  ```
 
+14- To view hosts status and mapping: https://cloud.ibm.com/satellite/locations/cb2rsd8w0emj53scdsb0/hosts
+
+<img width="1518" alt="image" src="https://user-images.githubusercontent.com/6279125/177609311-16966aa2-fb2d-44a8-bb6a-6c643fc92f4f.png">
 
 
+15 - Wait under Satellite location is Ready and in Normal status from the Satellite portal or from IBM Cloud cli:
 
+```
+behzadkoohi@Behzads-MBP login % ibmcloud sat location get --location cb2rsd8w0emj53scdsb0
+Retrieving location...
+OK
+                                   
+Name:                           azure-eastus   
+ID:                             cb2rsd8w0emj53scdsb0   
+Created:                        2022-07-06 12:54:13 -0400 (40 minutes ago)   
+Managed From:                   wdc   
+State:                          normal   
+Ready for deployments:          yes   
+Message:                        R0001: The Satellite location is ready for operations.   
+Hosts Available:                3   
+Hosts Total:                    6   
+Host Zones:                     eastus-1, eastus-2, eastus-3   
+Provider:                       azure   
+Provider Region:                eastus   
+Provider Credentials:           yes   
+Public Service Endpoint URL:    https://c107.us-east.satellite.cloud.ibm.com:30344   
+Private Service Endpoint URL:   -   
+OpenVPN Server Port:            -   
+Ignition Server Port:           -   
+Konnectivity Server Port:       30189   
+Logging Key Set:                no   
+Activity Tracker Key Set:       no   
+behzadkoohi@Behzads-MBP login % 
+
+```
 
