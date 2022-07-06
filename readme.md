@@ -151,4 +151,15 @@ Activity Tracker Key Set:       no
 behzadkoohi@Behzads-MBP login % 
 
 ```
+16 - Create a ROKS cluster from IBM Cloud portal in Satellite location in Azure:
+https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift
+<img width="1505" alt="image" src="https://user-images.githubusercontent.com/6279125/177611449-d2772954-8001-487f-b24f-f8c3e70e0811.png">
+
+<img width="1507" alt="image" src="https://user-images.githubusercontent.com/6279125/177611546-197c2639-807d-4875-ad69-cded1f5d9c6d.png">
+
+<img width="1489" alt="image" src="https://user-images.githubusercontent.com/6279125/177611676-6faff171-1d82-4574-91dd-f144db43889f.png">
+
+
+
+
 
