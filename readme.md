@@ -170,6 +170,37 @@ During this cluster provisioning, Hosts in Satellite location will undergo a Pro
 It may take up to 30 min for cluster proisioning to complete:
 <img width="1483" alt="image" src="https://user-images.githubusercontent.com/6279125/177617199-c5e757dc-4dd9-452e-a3a1-a998254c87c0.png">
 
+18 - VMs in Azure VPC by default will be provisioned using private IPs. In order to access the portal ROKS Web Console, there is a need to assign public IP and NIC to each Controller VMs and Worker node VMs.
+
+```
+ibmcloud target -g Default
+```
+
+```
+ibmcloud oc cluster ls
+```
+
+```
+ibmcloud oc cluster ls
+OK
+Name                  ID                     State    Created       Workers   Location       Version                 Resource Group Name   Provider   
+mycluster-satellite   cb2skpaw0djunrr0l08g   normal   2 hours ago   3         azure-eastus   4.9.37_1544_openshift   default               satellite   
+```
+
+```
+ibmcloud oc nlb-dns ls --cluster mycluster-satellite
+```
+```
+ibmcloud oc nlb-dns ls --cluster mycluster-satellite
+OK
+Hostname                                                                                       IP(s)                        Health Monitor   SSL Cert Status   SSL Cert Secret Name                                        Secret Namespace    Status   
+mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud   10.0.1.5,10.0.2.5,10.0.3.4   disabled         created           mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000   openshift-ingress   OK   
+```
+
+
+for i in {0..5}; do az network nic ip-config update --name $VM_PREFIX-nic-internal --nic-name $VM_PREFIX-nic-$i --resource-group $SAT_RG --public-ip-address $VM_PREFIX-vm-$i-public; done
+
+
 18 - Open up OpenShift Web console from Openshift portal in IBM Cloud:
 https://cloud.ibm.com/kubernetes/clusters?platformType=openshift
 
