@@ -321,19 +321,15 @@ OK
  % 
 ```
 
+Validate NLB public IPs
+
 ```
-ibmcloud oc nlb-dns ls --cluster mycluster-satellite
-```
-```
-Output:
-ibmcloud oc nlb-dns ls --cluster mycluster-satellite
+ibmcloud oc nlb-dns ls --cluster mycluster-satellite 
 OK
-Hostname                                                                                       IP(s)                        Health Monitor   SSL Cert Status   SSL Cert Secret Name                                        Secret Namespace    Status   
-mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud   10.0.1.5,10.0.2.5,10.0.3.4   disabled         created           mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000   openshift-ingress   OK   
+Hostname                                                                                       IP(s)                                         Health Monitor   SSL Cert Status   SSL Cert Secret Name                                        Secret Namespace    Status   
+mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud   20.231.234.241,20.231.234.247,20.231.235.85   disabled         created           mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000   openshift-ingress   OK   
+ % 
 ```
-
-
-for i in {0..5}; do az network nic ip-config update --name $VM_PREFIX-nic-internal --nic-name $VM_PREFIX-nic-$i --resource-group $SAT_RG --public-ip-address $VM_PREFIX-vm-$i-public; done
 
 
 18 - Open up OpenShift Web console from Openshift portal in IBM Cloud:
