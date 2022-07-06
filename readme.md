@@ -167,4 +167,12 @@ https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift
 During this cluster provisioning, Hosts in Satellite location will undergo a Provisioning process:
 <img width="1516" alt="image" src="https://user-images.githubusercontent.com/6279125/177613694-71661278-5d1e-4120-8f44-6d88d22525a9.png">
 
+It may take up to 30 min for cluster proisioning to complete:
+<img width="1483" alt="image" src="https://user-images.githubusercontent.com/6279125/177617199-c5e757dc-4dd9-452e-a3a1-a998254c87c0.png">
+
+18 - Open up OpenShift Web console from Openshift portal in IBM Cloud:
+https://cloud.ibm.com/kubernetes/clusters?platformType=openshift
+
+<img width="1517" alt="image" src="https://user-images.githubusercontent.com/6279125/177617416-139ce9c8-60e0-4f86-8b4c-ca26af085daa.png">
+
 
