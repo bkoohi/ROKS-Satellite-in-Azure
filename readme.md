@@ -181,6 +181,31 @@ set up two variables for Resource Group name and Prefix:
 % VM_PREFIX=azure-eastus-1154                                             
 % SAT_RG=azure-eastus-4228
 ```
+
+Reconfigure VMs with public nic:
+```
+for i in {0..5}; do az network public-ip create --resource-group $SAT_RG --name $VM_PREFIX-vm-0-
+public --version IPv4 --sku Standard --zone 1 2 3; done
+```
+
+Display VMs public nic IPs:
+```
+for i in {0..5}; do az network public-ip show -g $SAT_RG --name $VM_PREFIX-vm-0-public | grep ipAddress; done
+```
+```
+Output:
+  "ipAddress": "20.231.234.79",
+  "ipAddress": "20.231.234.79",
+  "ipAddress": "20.231.234.79",
+  "ipAddress": "20.231.234.79",
+  "ipAddress": "20.231.234.79",
+  "ipAddress": "20.231.234.79",
+```
+
+Update VM IPs
+```
+for i in {0..5}; do az network nic ip-config update --name $VM_PREFIX-nic-internal --nic-name $VM_PREFIX-nic-$i --resource-group $SAT_RG --public-ip-address $VM_PREFIX-vm-$i-public | grep ipAddress; done
+```
 ```
 ibmcloud target -g Default
 ```
