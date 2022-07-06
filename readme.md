@@ -164,5 +164,7 @@ https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift
 <img width="1216" alt="image" src="https://user-images.githubusercontent.com/6279125/177612055-d8671b9e-db6f-4f69-a9e7-d803c0d194c3.png">
 
 
+During this cluster provisioning, Hosts in Satellite location will undergo a Provisioning process:
+<img width="1516" alt="image" src="https://user-images.githubusercontent.com/6279125/177613694-71661278-5d1e-4120-8f44-6d88d22525a9.png">
 
 
