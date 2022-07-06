@@ -85,11 +85,35 @@ Once verification has been comepleted, you should be able to get a summary of ac
 
 11- Under schematics workspace , expand the executing job to find the detail: [https://cloud.ibm.com/schematics/workspaces]
 
-It may take a 5-10 min to deploy 3 VMs for Satellite control plane and 3 VMs for ROKS cluster
+It may take up to 30 min to deploy 3 VMs for Satellite control plane and 3 VMs for ROKS cluster
 
 12 - Resources created in Azure can be listed via Azure portal: https://portal.azure.com/#view/HubsExtension/BrowseAll
 
-13- 
+13- Once terraform execution completes, it generates the following completition message:
+```
+ 2022/07/06 17:18:09 Terraform apply | module.satellite-host.ibm_satellite_host.assign_host[0]: Still creating... [19m0s elapsed]
+ 2022/07/06 17:18:15 Terraform apply | module.satellite-host.ibm_satellite_host.assign_host[0]: Creation complete after 19m6s [id=cb2rsd8w0emj53scdsb0/azure-eastus-1154-vm-0]
+ 2022/07/06 17:18:15 Terraform apply | 
+ 2022/07/06 17:18:15 Terraform apply | Apply complete! Resources: 39 added, 0 changed, 0 destroyed.
+ 2022/07/06 17:18:15 Terraform apply | 
+ 2022/07/06 17:18:15 Terraform apply | Outputs:
+ 2022/07/06 17:18:15 Terraform apply | 
+ 2022/07/06 17:18:15 Terraform apply | host_ids = [
+ 2022/07/06 17:18:15 Terraform apply |   "/subscriptions/xxxhiddenxxx/resourceGroups/azure-eastus-4228/providers/Microsoft.Compute/virtualMachines/azure-eastus-1154-vm-0",
+ 2022/07/06 17:18:15 Terraform apply |   "/subscriptions/xxxhiddenxxx/resourceGroups/azure-eastus-4228/providers/Microsoft.Compute/virtualMachines/azure-eastus-1154-vm-1",
+ 2022/07/06 17:18:15 Terraform apply |   "/subscriptions/xxxhiddenxxx/resourceGroups/azure-eastus-4228/providers/Microsoft.Compute/virtualMachines/azure-eastus-1154-vm-2",
+ 2022/07/06 17:18:15 Terraform apply |   "/subscriptions/xxxhiddenxxx/resourceGroups/azure-eastus-4228/providers/Microsoft.Compute/virtualMachines/azure-eastus-1154-vm-3",
+ 2022/07/06 17:18:15 Terraform apply |   "/subscriptions/xxxhiddenxxx/resourceGroups/azure-eastus-4228/providers/Microsoft.Compute/virtualMachines/azure-eastus-1154-vm-4",
+ 2022/07/06 17:18:15 Terraform apply |   "/subscriptions/xxxhiddenxxx/resourceGroups/azure-eastus-4228/providers/Microsoft.Compute/virtualMachines/azure-eastus-1154-vm-5",
+ 2022/07/06 17:18:15 Terraform apply | ]
+ 2022/07/06 17:18:15 Terraform apply | location_id = "cb2rsd8w0emj53scdsb0"
+ 2022/07/06 17:18:15 Command finished successfully.
+ 
+ 2022/07/06 17:18:15 [34mStarting command: terraform1.1 output -no-color -json[39m[0m
+ 2022/07/06 17:18:15 Starting command: terraform1.1 output -no-color -json
+ 2022/07/06 17:18:20 Command finished successfully.
+ 2022/07/06 17:18:27 [1m[32mDone with the workspace action[39m[0m
+ ```
 
 
 
