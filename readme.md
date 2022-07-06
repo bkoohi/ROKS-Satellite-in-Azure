@@ -338,3 +338,62 @@ https://cloud.ibm.com/kubernetes/clusters?platformType=openshift
 <img width="1517" alt="image" src="https://user-images.githubusercontent.com/6279125/177617416-139ce9c8-60e0-4f86-8b4c-ca26af085daa.png">
 
 
+
+19 - access command line
+
+
+20 - Deploy sample app
+
+```
+oc new-app rails-postgresql-example
+--> Deploying template "openshift/rails-postgresql-example" to project my-example
+
+     Rails + PostgreSQL (Ephemeral)
+     ---------
+     An example Rails application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/rails-ex/blob/master/README.md.
+     
+     WARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.
+
+     The following service(s) have been created in your project: rails-postgresql-example, postgresql.
+     
+     For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/rails-ex/blob/master/README.md.
+
+     * With parameters:
+        * Name=rails-postgresql-example
+        * Namespace=openshift
+        * Memory Limit=512Mi
+        * Memory Limit (PostgreSQL)=512Mi
+        * Git Repository URL=https://github.com/sclorg/rails-ex.git
+        * Git Reference=
+        * Context Directory=
+        * Application Hostname=
+        * GitHub Webhook Secret=Mjby5RdEkV2nSLRvdxCfY2ibmSI2orMYLth6BE4r # generated
+        * Secret Key=2yhn0q5o0bf7txkpljlfal4kvy0hhee81mrhm1t6x8gk72fdea6wernvbqcd74fcmn0vslui2di28517tl7vsul16r8ojptshy5ei1rvpiwefehgnayexrl4beq8nul # generated
+        * Application Username=openshift
+        * Application Password=secret
+        * Rails Environment=production
+        * Database Service Name=postgresql
+        * Database Username=userVNU # generated
+        * Database Password=5hHtPkxO # generated
+        * Database Name=root
+        * Maximum Database Connections=100
+        * Shared Buffer Amount=12MB
+        * Custom RubyGems Mirror URL=
+
+--> Creating resources ...
+    secret "rails-postgresql-example" created
+    service "rails-postgresql-example" created
+    route.route.openshift.io "rails-postgresql-example" created
+    imagestream.image.openshift.io "rails-postgresql-example" created
+    buildconfig.build.openshift.io "rails-postgresql-example" created
+    deploymentconfig.apps.openshift.io "rails-postgresql-example" created
+    service "postgresql" created
+    deploymentconfig.apps.openshift.io "postgresql" created
+--> Success
+    Access your application via route 'rails-postgresql-example-my-example.mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud' 
+    WARNING: No container image registry has been configured with the server. Automatic builds and deployments may not function.
+    Build scheduled, use 'oc logs -f buildconfig/rails-postgresql-example' to track its progress.
+    Run 'oc status' to view your app.
+behzadkoohi@Behzads-MBP temp % 
+
+```
