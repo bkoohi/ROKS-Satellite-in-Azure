@@ -4,7 +4,13 @@
 
 <img width="1237" alt="image" src="https://user-images.githubusercontent.com/6279125/176729940-8b3d170f-6792-4c3c-9062-39f865efd826.png">
 
-or from cli"
+or from cli:
+```
+az login
+```
+```
+az vm list-usage --location "East US" --output table
+```
 ```
 % az vm list-usage --location "East US" --output table
 Name                                      CurrentValue    Limit
