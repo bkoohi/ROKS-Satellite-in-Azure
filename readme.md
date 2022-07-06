@@ -276,6 +276,25 @@ Ingress Subdomain:              mycluster-satellite-0db9129938ea8a3367aac00ffb8e
 behzadkoohi@Behzads-MBP kubernetesnodeapp % 
 ```
 
+Add 3 public IPs for worker nodes to ingress subdomain:
+```
+ %ibmcloud oc nlb-dns add --ip 20.231.234.241 --cluster mycluster-satellite --nlb-host mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud   
+Adding IP(s) 20.231.234.241 to NLB host name mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud in cluster mycluster-satellite ...
+Note: It might take a few minutes for your changes to be applied.
+Ok
+%
+
+ %ibmcloud oc nlb-dns add --ip 20.231.235.85 --cluster mycluster-satellite --nlb-host mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud  
+Adding IP(s) 20.231.235.85 to NLB host name mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud in cluster mycluster-satellite ...
+Note: It might take a few minutes for your changes to be applied.
+OK
+%
+
+ % ibmcloud oc nlb-dns add --ip 20.231.234.247 --cluster mycluster-satellite --nlb-host mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud  
+Adding IP(s) 20.231.234.247 to NLB host name mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud in cluster mycluster-satellite ...
+Note: It might take a few minutes for your changes to be applied.
+OK
+%
 ```
 ibmcloud oc nlb-dns ls --cluster mycluster-satellite
 ```
