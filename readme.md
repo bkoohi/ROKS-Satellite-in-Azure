@@ -79,8 +79,17 @@ Once verification has been comepleted, you should be able to get a summary of ac
 <img width="1566" alt="image" src="https://user-images.githubusercontent.com/6279125/176720140-8f1b3711-09d1-42a3-8cff-9aed4bc45ad5.png">
 
 
-10 - Review in Schematics console, your Satellite location creation in Azure:
-https://cloud.ibm.com/schematics/workspaces
+10 - To review the detail, select Overview and then under "Schematics workspace status", select View Logs: 
+
+<img width="1191" alt="image" src="https://user-images.githubusercontent.com/6279125/177604136-20917498-9f63-46ff-9dd0-2cf51d5562d0.png">
+
+11- Under schematics workspace , expand the executing job to find the detail: [https://cloud.ibm.com/schematics/workspaces/us-east.workspace.satellitelocation_-_azure.be5e1e3d/jobs?region=us]
+
+It may take a 5-10 min to deploy 3 VMs for Satellite control plane and 3 VMs for ROKS cluster
+
+12 -
+in Schematics console, your Satellite location creation in Azure:
+
 
 
 
