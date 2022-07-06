@@ -190,16 +190,16 @@ public --version IPv4 --sku Standard --zone 1 2 3; done
 
 Display VMs public nic IPs:
 ```
-for i in {0..5}; do az network public-ip show -g $SAT_RG --name $VM_PREFIX-vm-0-public | grep ipAddress; done
+for i in {0..5}; do az network public-ip show -g $SAT_RG --name $VM_PREFIX-vm-$i-public | grep ipAddress; done
 ```
 ```
 Output:
-  "ipAddress": "20.231.234.79",
-  "ipAddress": "20.231.234.79",
-  "ipAddress": "20.231.234.79",
-  "ipAddress": "20.231.234.79",
-  "ipAddress": "20.231.234.79",
-  "ipAddress": "20.231.234.79",
+  "ipAddress": "20.231.234.79",  <===== Satellite Control plane
+  "ipAddress": "20.231.232.154", <===== Satellite Control plane
+  "ipAddress": "20.231.234.229", <===== Satellite Control plane
+  "ipAddress": "20.231.234.241", <===== Cluster / Worker nodes
+  "ipAddress": "20.231.235.85",  <===== Cluster / Worker nodes
+  "ipAddress": "20.231.234.247", <===== Cluster / Worker nodes
 ```
 
 Update VM IPs
@@ -216,20 +216,64 @@ Output:
     "ipAddress": null,
 ```
 
+Set Resource group to Default unless a custom Resource group was used for deployment:
 ```
 ibmcloud target -g Default
 ```
+Identify Satellite location name used for ROKS deployment:
+```
+ibmcloud sat location ls
+```
+```
+Output:
+% ibmcloud sat location ls
+Retrieving locations...
+OK
+Name           ID                     Status   Ready   Created       Hosts (used/total)   Managed From   
+azure-eastus   cb2rsd8w0emj53scdsb0   normal   yes     4 hours ago   6 / 6                wdc  
+```
+
+Update DNS record for Satellite location with public IPs of Controller plane VMS:
 
 ```
-ibmcloud oc cluster ls
+ibmcloud sat location dns register --location azure-eastus --ip 20.231.234.79 --ip 20.231.232.154 --ip 20.231.234.229
+```
+```
+Output:
+% ibmcloud sat location dns register --location azure-eastus --ip 20.231.234.79 --ip 20.231.232.154 --ip 20.231.234.229
+Registering a subdomain for control plane hosts...
+OK
+Subdomain                                                                                       Records   
+a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-ce00.us-east.satellite.appdomain.cloud   a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c000.us-east.satellite.appdomain.cloud   
+a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c000.us-east.satellite.appdomain.cloud   20.231.234.229, 20.231.232.154, 20.231.234.79   
+a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c001.us-east.satellite.appdomain.cloud   20.231.232.154   
+a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c002.us-east.satellite.appdomain.cloud   20.231.234.79   
+a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c003.us-east.satellite.appdomain.cloud   20.231.234.229 
+```
+
+Find ROKS cluster deployed in the env:
+```
+ibmcloud ks cluster ls
 ```
 
 ```
 Output:
-ibmcloud oc cluster ls
+ % ibmcloud ks cluster ls
 OK
 Name                  ID                     State    Created       Workers   Location       Version                 Resource Group Name   Provider   
-mycluster-satellite   cb2skpaw0djunrr0l08g   normal   2 hours ago   3         azure-eastus   4.9.37_1544_openshift   default               satellite   
+mycluster-satellite   cb2skpaw0djunrr0l08g   normal   3 hours ago   3         azure-eastus   4.9.37_1544_openshift   default               satellite   
+```
+
+Identify Ingress subdomain for your ROKS cluster:
+```
+ibmcloud ks cluster get --cluster mycluster-satellite | grep "Ingress Subdomain"
+```
+
+```
+Output
+% ibmcloud ks cluster get --cluster mycluster-satellite | grep "Ingress Subdomain"
+Ingress Subdomain:              mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.appdomain.cloud   
+behzadkoohi@Behzads-MBP kubernetesnodeapp % 
 ```
 
 ```
