@@ -9,15 +9,21 @@ or from cli:
 az login
 ```
 ```
-az vm list-usage --location "East US" --output table
+az vm list-usage --location "East US" --output table | grep DASv4
 ```
 ```
-% az vm list-usage --location "East US" --output table
-Name                                      CurrentValue    Limit
-----------------------------------------  --------------  -------
-Availability Sets                         0               2500
-Total Regional vCPUs                      8               10
-....
+% az vm list-usage --location "East US" --output table | grep DASv4
+Standard DASv4 Family vCPUs               0               40
+Standard NDASv4_A100 Family vCPUs         0               0
+% 
+```
+
+```
+ % az vm list-usage --location "East US" --output table | grep Regional 
+Total Regional vCPUs                      0               81
+Total Regional Low-priority vCPUs         0               3
+% 
+
 ```
 By default the limit is 10 vCPU per region and it needs to be modified from portal to at least 12 or higher.
 
