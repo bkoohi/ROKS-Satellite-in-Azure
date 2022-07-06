@@ -160,6 +160,9 @@ https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift
 <img width="1489" alt="image" src="https://user-images.githubusercontent.com/6279125/177611676-6faff171-1d82-4574-91dd-f144db43889f.png">
 
 
+17 - It may take up to 30 min to create the cluster:
+<img width="1216" alt="image" src="https://user-images.githubusercontent.com/6279125/177612055-d8671b9e-db6f-4f69-a9e7-d803c0d194c3.png">
+
 
 
 
