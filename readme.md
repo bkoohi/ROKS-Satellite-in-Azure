@@ -170,8 +170,17 @@ During this cluster provisioning, Hosts in Satellite location will undergo a Pro
 It may take up to 30 min for cluster proisioning to complete:
 <img width="1483" alt="image" src="https://user-images.githubusercontent.com/6279125/177617199-c5e757dc-4dd9-452e-a3a1-a998254c87c0.png">
 
+
 18 - VMs in Azure VPC by default will be provisioned using private IPs. In order to access the portal ROKS Web Console, there is a need to assign public IP and NIC to each Controller VMs and Worker node VMs.
 
+19- Identify az_resource_group and az_resource_prefix within the Schematics workspace:
+![image](https://user-images.githubusercontent.com/6279125/177636646-875509fa-7bbc-458c-8490-bee0156c7bac.png)
+
+set up two variables for Resource Group name and Prefix:
+```
+% VM_PREFIX=azure-eastus-1154                                             
+% SAT_RG=azure-eastus-4228
+```
 ```
 ibmcloud target -g Default
 ```
@@ -181,6 +190,7 @@ ibmcloud oc cluster ls
 ```
 
 ```
+Output:
 ibmcloud oc cluster ls
 OK
 Name                  ID                     State    Created       Workers   Location       Version                 Resource Group Name   Provider   
@@ -191,6 +201,7 @@ mycluster-satellite   cb2skpaw0djunrr0l08g   normal   2 hours ago   3         az
 ibmcloud oc nlb-dns ls --cluster mycluster-satellite
 ```
 ```
+Output:
 ibmcloud oc nlb-dns ls --cluster mycluster-satellite
 OK
 Hostname                                                                                       IP(s)                        Health Monitor   SSL Cert Status   SSL Cert Secret Name                                        Secret Namespace    Status   
