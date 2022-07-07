@@ -415,3 +415,17 @@ oc new-app rails-postgresql-example
 behzadkoohi@Behzads-MBP temp % 
 
 ```
+### 4- Clean up
+
+1- Delete Azure infrastructure 
+Identify workspace under Schematic and select the workspace , select Destroy Resources under Actions
+https://cloud.ibm.com/schematics/workspaces
+
+Once terraform execution completes and deletes resources, you can go to Azure portal to confirm removal of all resoruces
+https://portal.azure.com/#view/HubsExtension/BrowseAll
+
+2- Delete ROKS cluster in IBM Cloud portal
+https://cloud.ibm.com/kubernetes/clusters?platformType=openshift
+
+3- Delete Satellite location in IBM Cloud portal
+https://cloud.ibm.com/satellite/locations
