@@ -418,6 +418,7 @@ behzadkoohi@Behzads-MBP temp %
 ### 4- Clean up
 
 1- Delete Azure infrastructure 
+
 Identify workspace under Schematic and select the workspace , select Destroy Resources under Actions
 https://cloud.ibm.com/schematics/workspaces
 
