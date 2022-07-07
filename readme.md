@@ -1,4 +1,4 @@
-IBM Cloud documentation for creating a Satellite location in Azure provides overall design and deployment steps: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing prerequisites and some of post deployment steps for accessing ROKS portal that are being documented in this
+IBM Cloud documentation for creating a Satellite location in Azure provides overall design and deployment steps: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing some of prerequisites steps and some of post deployment steps for accessing ROKS portal that are being documented in this
 
 ### 1- Validation
 
@@ -27,7 +27,7 @@ Total Regional Low-priority vCPUs         0               3
 % 
 
 ```
-By default the limit is 10 vCPU per region and it needs to be modified from portal to at least 12 or higher.
+By default the limit is 10 vCPU per region and it needs to be modified from portal to at least 24 or higher.
 
 
 ### 2- Deployement 
@@ -171,10 +171,17 @@ During this cluster provisioning, Hosts in Satellite location will undergo a Pro
 It may take up to 30 min for cluster proisioning to complete:
 <img width="1483" alt="image" src="https://user-images.githubusercontent.com/6279125/177617199-c5e757dc-4dd9-452e-a3a1-a998254c87c0.png">
 
+### 3- Post Deployment
+By now, we have Satellite control plane deployed and at least one ROKS cluster in Aure ready for application or CloudPak deployment. However, by default private IPs ( 10.x.x.x ) are used for Control plane and worker nodes deployment. Private network are not accessable from outside of Azure network and therefore cluster web console is not accessable from IBM Cloud. There are two options to make it accessable:
+1- Establish a VPN link from IBM Cloud to Azure using wineguard VPN tool: https://jakew.me/wireguard-docker/
+2- Update VMs in Azure for control plane and worker nodes and swap private IPs with public IPs.
 
-18 - VMs in Azure VPC by default will be provisioned using private IPs. In order to access the portal ROKS Web Console, there is a need to assign public IP and NIC to each Controller VMs and Worker node VMs.
+#### 3.1- Wireguard
 
-19- Identify az_resource_group and az_resource_prefix within the Schematics workspace:
+#### 3.2- Swapping private IPs with public IPs
+1 - VMs in Azure VPC by default will be provisioned using private IPs. In order to access the portal ROKS Web Console, there is a need to assign public IP and NIC to each Controller VMs and Worker node VMs.
+
+2- Identify az_resource_group and az_resource_prefix within the Schematics workspace:
 ![image](https://user-images.githubusercontent.com/6279125/177636646-875509fa-7bbc-458c-8490-bee0156c7bac.png)
 
 set up two variables for Resource Group name and Prefix:
