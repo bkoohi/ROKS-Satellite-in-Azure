@@ -307,6 +307,7 @@ Adding IP(s) 20.231.234.247 to NLB host name mycluster-satellite-0db9129938ea8a3
 Note: It might take a few minutes for your changes to be applied.
 OK
 %
+```
 
 Validate ROKS cluster NLB IPs:
 ```
