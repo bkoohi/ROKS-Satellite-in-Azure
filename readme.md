@@ -189,8 +189,7 @@ set up two variables for Resource Group name and Prefix:
 % VM_PREFIX=azure-eastus-1154                                             
 % SAT_RG=azure-eastus-4228
 ```
-
-Reconfigure VMs with public nic:
+3- Reconfigure VMs with public nic:
 ```
 for i in {0..5}; do az network public-ip create --resource-group $SAT_RG --name $VM_PREFIX-vm-0-
 public --version IPv4 --sku Standard --zone 1 2 3; done
@@ -223,12 +222,13 @@ Output:
     "ipAddress": null,
     "ipAddress": null,
 ```
+4- Update ROKS cluster configuration in IBM Cloud with new public IPs.
 
-Set Resource group to Default unless a custom Resource group was used for deployment:
+4.1 Set Resource group to Default unless a custom Resource group was used for deployment:
 ```
 ibmcloud target -g Default
 ```
-Identify Satellite location name used for ROKS deployment:
+4.2 Identify Satellite location name used for ROKS deployment:
 ```
 ibmcloud sat location ls
 ```
@@ -241,7 +241,7 @@ Name           ID                     Status   Ready   Created       Hosts (used
 azure-eastus   cb2rsd8w0emj53scdsb0   normal   yes     4 hours ago   6 / 6                wdc  
 ```
 
-Update DNS record for Satellite location with public IPs of Controller plane VMS:
+4.3 Update DNS record for Satellite location with public IPs of Controller plane VMS:
 
 ```
 ibmcloud sat location dns register --location azure-eastus --ip 20.231.234.79 --ip 20.231.232.154 --ip 20.231.234.229
@@ -259,6 +259,7 @@ a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c002.us-east.satellite.ap
 a429a27d8f60474dd517d-6b64a6ccc9c596bf59a86625d8fa2202-c003.us-east.satellite.appdomain.cloud   20.231.234.229 
 ```
 
+4.4 Updaate Ingress subdomain
 Find ROKS cluster deployed in the env:
 ```
 ibmcloud ks cluster ls
@@ -340,17 +341,22 @@ mycluster-satellite-0db9129938ea8a3367aac00ffb8e4b76-0000.us-east.containers.app
 ```
 
 
-18 - Open up OpenShift Web console from Openshift portal in IBM Cloud:
+5 - Open up OpenShift Web console from Openshift portal in IBM Cloud:
 https://cloud.ibm.com/kubernetes/clusters?platformType=openshift
 
 <img width="1517" alt="image" src="https://user-images.githubusercontent.com/6279125/177617416-139ce9c8-60e0-4f86-8b4c-ca26af085daa.png">
 
 
+6 - access command line
+```
+% oc version
+Client Version: 4.10.6
+Kubernetes Version: v1.22.8+f34b40c
+%
+```
 
-19 - access command line
-
-
-20 - Deploy sample app
+### 4- Demo application deployment
+1 - Deploy sample app
 
 ```
 oc new-app rails-postgresql-example
