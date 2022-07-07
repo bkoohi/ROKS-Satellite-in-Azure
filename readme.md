@@ -1,7 +1,7 @@
 ### 1- Validation
 1- Review IBM Cloud documentation for creating a Satellite location in Azure: https://cloud.ibm.com/docs/satellite?topic=satellite-azure
 
-2- Prior to creating a statellite location in Azure, check Usage-Quotas in Azure portal or cli to make sure there are at least 12 vCPU allowed:
+2- Prior to creating a statellite location in Azure, check Usage-Quotas in Azure portal or cli to make sure there are at least 24 vCPU allowed. Satellite deployment will fail when VM provisioning hits the quotas limit in Azure:
 
 <img width="1237" alt="image" src="https://user-images.githubusercontent.com/6279125/176729940-8b3d170f-6792-4c3c-9062-39f865efd826.png">
 
