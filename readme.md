@@ -1,6 +1,6 @@
 IBM Cloud documentation for creating a Satellite location in Azure provides overall design and deployment steps: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing some of prerequisites steps and some of post deployment steps for accessing ROKS portal that are being documented in this readme.
 
-### 1- Validation
+### 1- Prerequisites
 
 1- Prior to creating a satellite location in Azure, check Usage-Quotas for your userid. This quota can be displayed and modified in Azure portal or via cli. By default, there is a 10 vCPU limit per region per user limit. We need to increase this limit to at least 24 vCPU or higher if you are deploying multiple ROKS clusters in Azure. Satellite deployment will fail when VM provisioning hits the quotas limit in Azure:
 
@@ -30,42 +30,44 @@ Total Regional Low-priority vCPUs         0               3
 By default the limit is 10 vCPU per region and it needs to be modified from portal to at least 24 or higher.
 
 
-### 2- Deployement 
-1- Install Azure AZ Command line in your local host or laptop following in Mac OS:
+2- Install Azure AZ Command line in your local host or laptop following in Mac OS:
 ```
 brew update && brew install azure-cli
 ```
 
 For other OSes, follow these instructions: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest
 
-2- Login in Azure using:
+3- Login in Azure using:
 ```
 az login
 ```
 It will bring up Azure Login in a browser and prompts for login
 
-3- To test your ID and account:
+4- To test your ID and account:
 ```
 az account list
 ```
 
-4- Find your subscription ID:
+5- Find your subscription ID:
 ```
 az account show
 ```
 Look for 
 "id: xxxxxx"
 
-5- Setup the subscription 
+6- Setup the subscription 
 ```
 az account set --subscription=xxxxx
 ```
-6- Create a principal service 
+7- Create a principal service 
 ```
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/xxxxx" -n"satelline-service-principal"
 ```
+8- if you don't have ibmcloud cli and sat plugin installed then follow these steps: https://cloud.ibm.com/docs/satellite?topic=satellite-setup-cli
 
-7- Go to IBM Cloud Satellite offering using Azure Quick Start
+### 2- Deployement 
+
+1- Go to IBM Cloud Satellite offering using Azure Quick Start
 https://cloud.ibm.com/satellite/locations/create/azure
 
 Enter AppID, Tenant ID and passwd generated in previous step and select Verify
@@ -75,13 +77,13 @@ Once verification has been comepleted, you should be able to get a summary of ac
 <img width="1554" alt="image" src="https://user-images.githubusercontent.com/6279125/176719384-4d14034d-4eb3-4468-9133-75d40a13d4ab.png">
 
 
-8- Once account has been validated and such cost estimate generated as shown in above then click on Create Location
+2- Once account has been validated and such cost estimate generated as shown in above then click on Create Location
 
-9- Check the cluster creation status and progress:
+3- Check the cluster creation status and progress:
 <img width="1566" alt="image" src="https://user-images.githubusercontent.com/6279125/176720140-8f1b3711-09d1-42a3-8cff-9aed4bc45ad5.png">
 
 
-10 - To review the detail, select Overview and then under "Schematics workspace status", select View Logs: 
+4 - To review the detail, select Overview and then under "Schematics workspace status", select View Logs: 
 
 <img width="1191" alt="image" src="https://user-images.githubusercontent.com/6279125/177604136-20917498-9f63-46ff-9dd0-2cf51d5562d0.png">
 
@@ -89,9 +91,9 @@ Once verification has been comepleted, you should be able to get a summary of ac
 
 It may take up to 30 min to deploy 3 VMs for Satellite control plane and 3 VMs for ROKS cluster
 
-12 - Resources created in Azure can be listed via Azure portal: https://portal.azure.com/#view/HubsExtension/BrowseAll
+5 - Resources created in Azure can be listed via Azure portal: https://portal.azure.com/#view/HubsExtension/BrowseAll
 
-13- Once terraform execution completes, it generates the following completition message:
+6- Once terraform execution completes, it generates the following completition message:
 ```
  2022/07/06 17:18:09 Terraform apply | module.satellite-host.ibm_satellite_host.assign_host[0]: Still creating... [19m0s elapsed]
  2022/07/06 17:18:15 Terraform apply | module.satellite-host.ibm_satellite_host.assign_host[0]: Creation complete after 19m6s [id=cb2rsd8w0emj53scdsb0/azure-eastus-1154-vm-0]
@@ -117,12 +119,12 @@ It may take up to 30 min to deploy 3 VMs for Satellite control plane and 3 VMs f
  2022/07/06 17:18:27 [1m[32mDone with the workspace action[39m[0m
  ```
 
-14- To view hosts status and mapping: https://cloud.ibm.com/satellite/locations/cb2rsd8w0emj53scdsb0/hosts
+7- To view hosts status and mapping: https://cloud.ibm.com/satellite/locations/cb2rsd8w0emj53scdsb0/hosts
 
 <img width="1518" alt="image" src="https://user-images.githubusercontent.com/6279125/177609311-16966aa2-fb2d-44a8-bb6a-6c643fc92f4f.png">
 
 
-15 - Wait under Satellite location is Ready and in Normal status from the Satellite portal or from IBM Cloud cli:
+8 - Wait under Satellite location is Ready and in Normal status from the Satellite portal or from IBM Cloud cli:
 
 ```
 behzadkoohi@Behzads-MBP login % ibmcloud sat location get --location cb2rsd8w0emj53scdsb0
@@ -152,7 +154,7 @@ Activity Tracker Key Set:       no
 behzadkoohi@Behzads-MBP login % 
 
 ```
-16 - Create a ROKS cluster from IBM Cloud portal in Satellite location in Azure:
+9 - Create a ROKS cluster from IBM Cloud portal in Satellite location in Azure:
 https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift
 <img width="1505" alt="image" src="https://user-images.githubusercontent.com/6279125/177611449-d2772954-8001-487f-b24f-f8c3e70e0811.png">
 
@@ -161,7 +163,7 @@ https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift
 <img width="1489" alt="image" src="https://user-images.githubusercontent.com/6279125/177611676-6faff171-1d82-4574-91dd-f144db43889f.png">
 
 
-17 - It may take up to 30 min to create the cluster:
+10 - It may take up to 30 min to create the cluster:
 
 <img width="1215" alt="image" src="https://user-images.githubusercontent.com/6279125/177613835-a2be7c0f-fc0a-4dfd-8e6e-5d2e9790b093.png">
 
@@ -177,6 +179,7 @@ By now, we have Satellite control plane deployed and at least one ROKS cluster i
 2- Update VMs in Azure for control plane and worker nodes and swap private IPs with public IPs.
 
 #### 3.1- Wireguard
+https://jakew.me/wireguard-docker/
 
 #### 3.2- Swapping private IPs with public IPs
 1 - VMs in Azure VPC by default will be provisioned using private IPs. In order to access the portal ROKS Web Console, there is a need to assign public IP and NIC to each Controller VMs and Worker node VMs.
