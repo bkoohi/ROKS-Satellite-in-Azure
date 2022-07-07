@@ -1,4 +1,4 @@
-IBM Cloud documentation for creating a Satellite location in Azure provides overall design and deployment steps: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing some of prerequisites steps and some of post deployment steps for accessing ROKS portal that are being documented in this
+IBM Cloud documentation for creating a Satellite location in Azure provides overall design and deployment steps: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing some of prerequisites steps and some of post deployment steps for accessing ROKS portal that are being documented in this readme.
 
 ### 1- Validation
 
