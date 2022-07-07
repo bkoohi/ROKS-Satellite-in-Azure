@@ -1,8 +1,8 @@
-### 1- Validation
-1- IBM Cloud documentation for creating a Satellite location in Azure: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing prerequisites and some of post deployment steps for accessing ROKS portal. ![image](https://user-images.githubusercontent.com/6279125/177785815-fc1e447d-259a-403e-856a-1f7480f8e564.png)
- 
+IBM Cloud documentation for creating a Satellite location in Azure provides overall design and deployment steps: https://cloud.ibm.com/docs/satellite?topic=satellite-azure. It's missing prerequisites and some of post deployment steps for accessing ROKS portal that are being documented in this
 
-2- Prior to creating a satellite location in Azure, check Usage-Quotas in Azure portal or cli to make sure there are at least 24 vCPU allowed. Satellite deployment will fail when VM provisioning hits the quotas limit in Azure:
+### 1- Validation
+
+1- Prior to creating a satellite location in Azure, check Usage-Quotas for your userid. This quota can be displayed and modified in Azure portal or via cli. By default, there is a 10 vCPU limit per region per user limit. We need to increase this limit to at least 24 vCPU or higher if you are deploying multiple ROKS clusters in Azure. Satellite deployment will fail when VM provisioning hits the quotas limit in Azure:
 
 <img width="1237" alt="image" src="https://user-images.githubusercontent.com/6279125/176729940-8b3d170f-6792-4c3c-9062-39f865efd826.png">
 
